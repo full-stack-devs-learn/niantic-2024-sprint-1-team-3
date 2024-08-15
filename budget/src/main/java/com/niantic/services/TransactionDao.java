@@ -28,8 +28,6 @@ public class TransactionDao
 
     public ArrayList<Transaction> getTransactionByUser(int userId)
     {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-
         String sql = """
                 SELECT transaction_id
                     , user_id
@@ -48,10 +46,7 @@ public class TransactionDao
     }
 
     public ArrayList<Transaction> getTransactionByMonth(int month)
-
     {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-
         String sql = """
                 SELECT transaction_id
                         , user_id
@@ -69,10 +64,7 @@ public class TransactionDao
     }
 
     public ArrayList<Transaction> getTransactionByYear(int year)
-
     {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-
         String sql = """
                 SELECT transaction_id
                         , user_id
@@ -87,6 +79,63 @@ public class TransactionDao
         var row = jdbcTemplate.queryForRowSet(sql, year);
 
         return rowActions(row);
+    }
+
+    public ArrayList<Transaction> getTransactionByCategory(int categoryId)
+    {
+        String sql = """
+                SELECT transaction_id
+                        , user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                FROM transactions
+                WHERE category_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, categoryId);
+
+        return rowActions(row);
+    }
+
+    public Transaction getTransactionById(int transactionId)
+    {
+        String sql = """
+                SELECT transaction_id
+                        , user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                FROM transactions
+                WHERE transaction_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, transactionId);
+
+        if(row.next())
+        {
+            int userId = row.getInt("user_id");
+            int categoryId = row.getInt("category_id");
+            int vendorId = row.getInt("vendor_id");
+
+            LocalDate transactionDate = null;
+            Date date = row.getDate("transaction_date");
+            if(date != null)
+            {
+                transactionDate = date.toLocalDate();
+            }
+
+            BigDecimal amount = row.getBigDecimal("amount");
+            String notes = row.getString("notes");
+
+            return new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+        }
+
+        return null;
     }
 
     public void addTransaction(Transaction transaction)
