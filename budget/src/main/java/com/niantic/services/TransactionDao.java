@@ -26,6 +26,28 @@ public class TransactionDao
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public ArrayList<Transaction> getTransactionsLastFive()
+    {
+        var transactions = new ArrayList<Transaction>();
+
+        String sql = """
+                SELECT transaction_id
+                    , user_id
+                    , category_id
+                    , vendor_id
+                    , transaction_date
+                    , amount
+                    , notes
+                FROM transactions
+                ORDER BY transaction_date DESC
+                LIMIT 5;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql);
+
+        return rowActions(row);
+
+    }
+
     public ArrayList<Transaction> getTransactionByUser(int userId)
     {
         String sql = """
