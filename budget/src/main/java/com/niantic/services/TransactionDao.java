@@ -28,7 +28,7 @@ public class TransactionDao
 
     public ArrayList<Transaction> getTransactionsLastFive()
     {
-        var transactions = new ArrayList<Transaction>();
+        // var transactions = new ArrayList<Transaction>();
 
         String sql = """
                 SELECT transaction_id

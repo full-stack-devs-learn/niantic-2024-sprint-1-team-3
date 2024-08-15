@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 
 @Controller
-public class TransactionsController {
-
+public class TransactionsController
+{
     private TransactionDao transactionDao = new TransactionDao();
 
     @GetMapping ("/transactions")
@@ -18,6 +18,7 @@ public class TransactionsController {
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionsLastFive();
         model.addAttribute("transactions", transactions);
+        model.addAttribute("pageTitle", "hello");
 
         return "transactions/index";
     }
