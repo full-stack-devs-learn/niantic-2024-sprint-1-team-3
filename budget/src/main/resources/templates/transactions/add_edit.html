@@ -4,23 +4,27 @@
 
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
-<main>
+<main class="container mt-4">
     <h1 th:if ="${action} == 'add'"> Add Transaction </h1>
     <h1 th:if ="${action} == 'edit'"> Edit Transaction </h1>
 
     <form action ="#" th:object= "${transaction}" method = "post">
+        <div th:if = "${action} == 'edit'" class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{transactionId}">
+            <label th:for="*{transactionId}"> Transaction Id </label>
+        </div>
+
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{userId}">
             <label th:for="*{userId}"> User Id </label>
         </div>
-        <div class ="form-floating mb-3">
 
+        <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{categoryId}">
             <label th:for="*{categoryId}"> Category Id</label>
         </div>
 
         <div class ="form-floating mb-3">
-
             <input class="form-control" type="text" th:field ="*{vendorId}">
             <label th:for="*{vendorId}"> Vendor Id </label>
         </div>

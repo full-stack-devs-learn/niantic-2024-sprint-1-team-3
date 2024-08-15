@@ -28,8 +28,6 @@ public class TransactionDao
 
     public ArrayList<Transaction> getTransactionsLastFive()
     {
-        // var transactions = new ArrayList<Transaction>();
-
         String sql = """
                 SELECT transaction_id
                     , user_id
@@ -187,20 +185,24 @@ public class TransactionDao
     {
         String sql = """
                 UPDATE transactions
-                    SET user_id
-                        , category_id
-                        , vendor_id
-                        , transaction_date
-                        , amount
-                        , notes
+                SET transaction_id = ?
+                        , user_id = ?
+                        , category_id = ?
+                        , vendor_id = ?
+                        , transaction_date = ?
+                        , amount = ?
+                        , notes = ?
                 WHERE transaction_id = ?;
                 """;
         jdbcTemplate.update (sql
+                            , transaction.getTransactionId()
                             , transaction.getUserId()
                             , transaction.getCategoryId()
+                            , transaction.getVendorId()
                             , transaction.getTransactionDate()
                             , transaction.getAmount()
                             , transaction.getNotes()
+                            , transaction.getTransactionId()
         );
     }
 

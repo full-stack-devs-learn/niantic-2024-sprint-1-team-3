@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main class="container mt-4">
+    <h1>Delete Transaction</h1>
+    <p>You are about to delete the following transaction.</p>
+
+    <table class="table">
+        <tr><th>Transaction Id:</th> <td th:text="${transaction.transactionId}"></td></tr>
+        <tr><th>User Id:</th> <td th:text="${transaction.userId}"></td></tr>
+        <tr><th>Category Id:</th> <td th:text="${transaction.categoryId}"></td></tr>
+        <tr><th>Vendor Id:</th> <td th:text="${transaction.vendorId}"></td></tr>
+        <tr><th>Transaction Date:</th> <td th:text="${transaction.transactionDate}"></td></tr>
+        <tr><th>Amount:</th> <td th:text="${transaction.amount}"></td></tr>
+        <tr><th>Notes:</th> <td th:text="${transaction.notes}"></td></tr>
+    </table>
+
+    <form method="post">
+        <input type="submit" class="btn btn-danger" value="Delete">
+        <a href="/transactions" class="btn btn-secondary">Cancel</a>
+    </form>
+</main>
+</body>
+</html>
