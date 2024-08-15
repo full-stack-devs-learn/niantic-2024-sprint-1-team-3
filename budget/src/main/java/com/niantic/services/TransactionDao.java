@@ -7,6 +7,9 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TransactionDao
@@ -44,7 +47,7 @@ public class TransactionDao
         return rowActions(row);
     }
 
-    
+
 
     public void addTransaction(Transaction transaction)
     {
@@ -67,5 +70,33 @@ public class TransactionDao
                 , transaction.getTransactionDate()
                 , transaction.getAmount()
                 , transaction.getNotes());
+    }
+
+    public ArrayList<Transaction> rowActions(SqlRowSet row)
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        while(row.next())
+        {
+            int transactionId = row.getInt("transaction_id");
+            int userId = row.getInt("user_id");
+            int categoryId = row.getInt("category_id");
+            int vendorId = row.getInt("vendor_id");
+
+            LocalDate transactionDate = null;
+            Date date = row.getDate("transaction_date");
+            if(date != null)
+            {
+                transactionDate = date.toLocalDate();
+            }
+
+            BigDecimal amount = row.getBigDecimal("amount");
+            String notes = row.getString("notes");
+
+            var transaction = new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+            transactions.add(transaction);
+        }
+
+        return transactions;
     }
 }
