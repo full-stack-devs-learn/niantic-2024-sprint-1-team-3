@@ -171,7 +171,7 @@ public class TransactionDao
                 , amount
                 , notes)
                 VALUES
-                (?, ?, ?, ?, ?, ?);
+                (?, ?, ?, ?, ?, ?,?);
                 """;
 
         jdbcTemplate.update(sql

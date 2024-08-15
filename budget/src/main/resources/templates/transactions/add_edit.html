@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main>
+    <h1 th:if ="${action} == 'add'"> Add Transaction </h1>
+    <h1 th:if ="${action} == 'edit'"> Edit Transaction </h1>
+
+    <form action ="#" th:object= "${transaction}" method = "post">
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{userId}">
+            <label th:for="*{userId}"> User Id </label>
+        </div>
+        <div class ="form-floating mb-3">
+
+            <input class="form-control" type="text" th:field ="*{categoryId}">
+            <label th:for="*{categoryId}"> Category Id</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+
+            <input class="form-control" type="text" th:field ="*{vendorId}">
+            <label th:for="*{vendorId}"> Vendor Id </label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{transactionDate}">
+            <label th:for="*{transactionDate}"> Transaction Date </label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{amount}">
+            <label th:for="*{amount}"> Amount </label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{notes}">
+            <label th:for="*{notes}"> Notes </label>
+        </div>
+
+        <input class ="btn btn-outline-danger" type = "Submit"
+ value = "Save">
+    </form>
+</main>
+</body>
+</html>
