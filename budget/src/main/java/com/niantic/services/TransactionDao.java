@@ -171,7 +171,7 @@ public class TransactionDao
                 , amount
                 , notes)
                 VALUES
-                (?, ?, ?, ?, ?, ?,?);
+                (?, ?, ?, ?, ?, ?);
                 """;
 
         jdbcTemplate.update(sql
@@ -183,7 +183,32 @@ public class TransactionDao
                 , transaction.getNotes());
     }
 
+    public void updateTransaction(Transaction transaction)
+    {
+        String sql = """
+                UPDATE transactions
+                    SET user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                WHERE transaction_id = ?;
+                """;
+        jdbcTemplate.update (sql
+                            , transaction.getUserId()
+                            , transaction.getCategoryId()
+                            , transaction.getTransactionDate()
+                            , transaction.getAmount()
+                            , transaction.getNotes()
+        );
+    }
 
+    public void deleteTransaction (int id)
+    {
+        String sql = "DELETE FROM transactions WHERE transaction_id = ?;";
+        jdbcTemplate.update(sql,id);
+    }
 
     public ArrayList<Transaction> rowActions(SqlRowSet row)
     {

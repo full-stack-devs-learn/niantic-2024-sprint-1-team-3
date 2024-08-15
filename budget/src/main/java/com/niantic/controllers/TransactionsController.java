@@ -76,4 +76,12 @@ public class TransactionsController
         model.addAttribute("transaction", transaction);
         return "transactions/delete";
     }
+
+   @PostMapping("transactions/{id}/delete")
+
+    public String deleteTransaction (@PathVariable int id)
+   {
+       transactionDao.deleteTransaction(id);
+       return "redirect:/transactions";
+   }
 }
