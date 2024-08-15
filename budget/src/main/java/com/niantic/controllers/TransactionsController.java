@@ -84,4 +84,34 @@ public class TransactionsController
        transactionDao.deleteTransaction(id);
        return "redirect:/transactions";
    }
+
+   @GetMapping("transactions/reports/user/{id}")
+
+    public String getTransactionByUser (Model model, @PathVariable int id)
+   {
+       ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
+       model.addAttribute("transactions", transactions);
+
+       return "transactions/reports";
+   }
+
+    @GetMapping("transactions/reports/month/{month}")
+
+    public String getTransactionByMonth (Model model, @PathVariable int month)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(month);
+        model.addAttribute("transactions", transactions);
+
+        return "transactions/reports";
+    }
+
+    @GetMapping("transactions/reports/year/{year}")
+
+    public String getTransactionByYear (Model model, @PathVariable int year)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(year);
+        model.addAttribute("transactions", transactions);
+
+        return "transactions/reports";
+    }
 }
