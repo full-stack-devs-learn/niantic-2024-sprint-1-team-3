@@ -183,6 +183,8 @@ public class TransactionDao
                 , transaction.getNotes());
     }
 
+
+
     public ArrayList<Transaction> rowActions(SqlRowSet row)
     {
         ArrayList<Transaction> transactions = new ArrayList<>();
