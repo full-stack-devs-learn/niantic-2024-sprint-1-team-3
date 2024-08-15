@@ -4,7 +4,7 @@ import com.niantic.models.Transaction;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.test.context.jdbc.Sql;
+
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
@@ -37,7 +37,7 @@ public class TransactionDao
                     , vendor_id
                     , transaction_date
                     , amount
-                    , notes)
+                    , notes
                 FROM transactions
                 WHERE user_id = ?;
                 """;
@@ -47,7 +47,47 @@ public class TransactionDao
         return rowActions(row);
     }
 
+    public ArrayList<Transaction> getTransactionByMonth(int month)
 
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        String sql = """
+                SELECT transaction_id
+                        , user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                FROM transactions
+                WHERE MONTH(transaction_date) = ?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, month);
+
+        return rowActions(row);
+    }
+
+    public ArrayList<Transaction> getTransactionByYear(int year)
+
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        String sql = """
+                SELECT transaction_id
+                        , user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                FROM transactions
+                WHERE YEAR(transaction_date) = ?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, year);
+
+        return rowActions(row);
+    }
 
     public void addTransaction(Transaction transaction)
     {
