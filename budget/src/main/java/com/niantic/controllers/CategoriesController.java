@@ -57,7 +57,7 @@ public class CategoriesController {
         return "categories/add_edit";
     }
 
-    @PostMapping("users/{id}/edit")
+    @PostMapping("categories/{id}/edit")
     public String editCategory(@ModelAttribute("category") Category category, @PathVariable int id)
     {
         category.setCategoryId(id);
