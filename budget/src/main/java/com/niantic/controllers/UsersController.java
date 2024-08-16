@@ -64,4 +64,25 @@ public class UsersController {
         return "redirect:/users";
     }
 
+    @GetMapping("users/{id}/delete")
+    public String deleteUser(Model model, @PathVariable int id)
+    {
+        User user = userDao.getUserById(id);
+
+        if(user == null)
+        {
+            model.addAttribute("message", String.format("There is no user with id %d.", id));
+            return "404";
+        }
+
+        model.addAttribute("user", user);
+        return "users/delete";
+    }
+
+    @PostMapping("users/{id}/delete")
+    public String deleteUser(@PathVariable int id)
+    {
+        userDao.deleteUser(id);
+        return "redirect:/users";
+    }
 }

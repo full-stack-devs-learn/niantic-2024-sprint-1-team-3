@@ -156,8 +156,13 @@ public class UserDao
 
     public void deleteUser(int id)
     {
-        String sql = "DELETE FROM user WHERE user_id = ?;";
+        // Before we delete the User, we must delete all transactions associated with it
+        // because User ID is a primary key.
 
+        String sql = "DELETE FROM transactions WHERE user_id = ?;";
+        jdbcTemplate.update(sql, id);
+
+        sql = "DELETE FROM users WHERE user_id = ?;";
         jdbcTemplate.update(sql, id);
     }
 }

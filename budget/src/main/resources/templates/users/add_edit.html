@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main class="container mt-4">
+    <h1 th:if ="${action} == 'add'"> Add User </h1>
+    <h1 th:if ="${action} == 'edit'"> Edit User </h1>
+
+    <form action ="#" th:object= "${user}" method = "post">
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{userName}">
+            <label th:for="*{userName}">User name</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{firstName}">
+            <label th:for="*{firstName}">First name</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{lastName}">
+            <label th:for="*{lastName}">Last name</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{phone}">
+            <label th:for="*{phone}">Phone</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{email}">
+            <label th:for="*{email}">Email</label>
+        </div>
+
+        <input class ="btn btn-outline-danger" type = "Submit" value = "Save">
+    </form>
+</main>
+</body>
+</html>
