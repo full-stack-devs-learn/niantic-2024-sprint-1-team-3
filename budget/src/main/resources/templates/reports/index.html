@@ -7,8 +7,8 @@
 <main class="container mt-4">
     <h1>Report List</h1>
     <!-- <a href="/transactions/reports/user"></a> -->
-    <form action="/reports/user" method="get">
-        <input class="form-control" type="text" name="user" placeholder="User">
+    <form th:action="@{${type}}" method="get">
+        <input class="form-control" type="text" th:name="@{${type}}">
         <input class="btn btn-secondary" type="submit" value="Search">
     </form>
     <p th:text="${message}"></p>
@@ -17,6 +17,8 @@
         <tr>
             <th>Id</th>
             <th>User Id</th>
+            <th>Category Id</th>
+            <th>Vendor Id</th>
             <th>Transaction Date</th>
             <th>Amount</th>
             <th>Notes</th>
@@ -26,6 +28,8 @@
         <tr th:each="transaction:${transactions}">
             <td th:text="${transaction.transactionId}"></td>
             <td th:text="${transaction.userId}"></td>
+            <td th:text="${transaction.categoryId}"></td>
+            <td th:text="${transaction.vendorId}"></td>
             <td th:text="${transaction.transactionDate}"></td>
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>

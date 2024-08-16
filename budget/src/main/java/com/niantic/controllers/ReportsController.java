@@ -16,15 +16,16 @@ public class ReportsController {
 
     @GetMapping("/reports/user")
 
-    public String getTransactionByUser (Model model, @RequestParam(required = false, name = "user") Integer id)
+    public String getTransactionByUser (Model model, @RequestParam(required = false) Integer user)
     {
-        if(id == null)
+        if(user == null)
         {
-            id = transactionDao.getTransactionsLastFive().getFirst().getUserId();
+            user = transactionDao.getTransactionsLastFive().getFirst().getUserId();
 
         }
-        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(user);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("type", "user");
 
         return "reports/index";
     }
@@ -39,6 +40,7 @@ public class ReportsController {
         }
         ArrayList<Transaction> transactions = transactionDao.getTransactionByMonth(month);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("type", "month");
 
         return "reports/index";
     }
@@ -47,20 +49,44 @@ public class ReportsController {
 
     public String getTransactionByYear (Model model, Integer year)
     {
-        if(year == null) {
+        if(year == null)
+        {
             year = transactionDao.getTransactionsLastFive().getFirst().getTransactionDate().getYear();
         }
+
         ArrayList<Transaction> transactions = transactionDao.getTransactionByYear(year);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("type", "year");
 
         return "reports/index";
     }
 
     @GetMapping("/reports/category")
-    public String getTransactionByCategory (Model model, Integer id)
+    public String getTransactionByCategory (Model model, Integer category)
     {
-        ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(id);
+        if(category == null)
+        {
+            category = transactionDao.getTransactionsLastFive().getFirst().getCategoryId();
+        }
+
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(category);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("type", "category");
+
+        return "reports/index";
+    }
+
+    @GetMapping("/reports/vendor")
+    public String getTransactionByVendor (Model model, Integer vendor)
+    {
+        if(vendor == null)
+        {
+            vendor = transactionDao.getTransactionsLastFive().getFirst().getVendorId();
+        }
+
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByVendor(vendor);
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("type", "vendor");
 
         return "reports/index";
     }

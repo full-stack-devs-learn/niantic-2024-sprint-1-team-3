@@ -120,6 +120,25 @@ public class TransactionDao
         return rowActions(row);
     }
 
+    public ArrayList<Transaction> getTransactionByVendor(int vendorId)
+    {
+        String sql = """
+                SELECT transaction_id
+                        , user_id
+                        , category_id
+                        , vendor_id
+                        , transaction_date
+                        , amount
+                        , notes
+                FROM transactions
+                WHERE vendor_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, vendorId);
+
+        return rowActions(row);
+    }
+
     public Transaction getTransactionById(int transactionId)
     {
         String sql = """
