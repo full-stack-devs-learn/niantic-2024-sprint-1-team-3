@@ -124,7 +124,7 @@ public class VendorDao {
 
     public void deleteVendor (int vendorId)
     {
-        String sql = "DELETE FROM categories WHERE vendor_id = ?;";
+        String sql = "DELETE FROM vendors WHERE vendor_id = ?;";
 
         jdbcTemplate.update(sql, vendorId);
     }
