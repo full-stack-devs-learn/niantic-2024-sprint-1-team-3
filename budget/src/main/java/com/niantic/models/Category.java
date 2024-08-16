@@ -3,15 +3,15 @@ package com.niantic.models;
 public class Category
 {
     private int categoryId;
-    private String name;
+    private String categoryName;
     private String description;
 
     public Category(){}
 
-    public Category(int categoryId, String name, String description)
+    public Category(int categoryId, String categoryName, String description)
     {
         this.categoryId = categoryId;
-        this.name = name;
+        this.categoryName = categoryName;
         this.description = description;
     }
 
@@ -23,12 +23,12 @@ public class Category
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getDescription() {

@@ -8,7 +8,7 @@
     <h1>Report List</h1>
     <!-- <a href="/transactions/reports/user"></a> -->
     <form th:action="@{${type}}" method="get">
-        <input class="form-control" type="text" th:name="@{${type}}">
+        <input class="form-control" type="text" th:categoryName="@{${type}}">
         <input class="btn btn-secondary" type="submit" value="Search">
     </form>
     <p th:text="${message}"></p>
