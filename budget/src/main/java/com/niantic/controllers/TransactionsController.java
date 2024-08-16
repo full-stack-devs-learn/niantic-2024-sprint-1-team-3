@@ -83,55 +83,6 @@ public class TransactionsController
        return "redirect:/transactions";
    }
 
-   @GetMapping("transactions/reports/user")
-
-    public String getTransactionByUser (Model model, @RequestParam(required = false, name = "user") Integer id)
-   {
-       if(id == null)
-       {
-           id = transactionDao.getTransactionsLastFive().getFirst().getUserId();
-           model.addAttribute("message", "it was null");
-       }
-       else
-       {
-           model.addAttribute("message", "it was NOT null");
-       }
-
-       ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
-       model.addAttribute("transactions", transactions);
-
-       return "transactions/reports";
-   }
-
-    @GetMapping("transactions/reports/month")
-
-    public String getTransactionByMonth (Model model, Integer id)
-    {
-        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
-        model.addAttribute("transactions", transactions);
-
-        return "transactions/reports";
-    }
-
-    @GetMapping("transactions/reports/year")
-
-    public String getTransactionByYear (Model model, Integer id)
-    {
-        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
-        model.addAttribute("transactions", transactions);
-
-        return "transactions/reports";
-    }
-
-    @GetMapping("transactions/reports/category")
-    public String getTransactionByCategory (Model model, Integer id)
-    {
-        ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(id);
-        model.addAttribute("transactions", transactions);
-
-        return "transactions/reports";
-    }
-
     @GetMapping("transactions/{id}")
     public String getTransactionById(Model model, @PathVariable int id)
     {
