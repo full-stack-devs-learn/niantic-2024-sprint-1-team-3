@@ -30,6 +30,7 @@ public class UsersController {
         model.addAttribute("user", new User());
         model.addAttribute("action", "add");
         model.addAttribute("pageTitle", "Add User");
+
         return "users/add_edit";
     }
 
@@ -37,7 +38,7 @@ public class UsersController {
     public String addUser (Model model, @ModelAttribute("user") User user)
     {
         userDao.addUser(user);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
 
         return "redirect:/users";
     }

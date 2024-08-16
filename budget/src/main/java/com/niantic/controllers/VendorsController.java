@@ -58,7 +58,7 @@ public class VendorsController {
     public String editVendor (@ModelAttribute("vendor") Vendor vendor, @PathVariable int id)
     {
         vendor.setVendorId(id);
-       vendorDao.updateVendor(vendor);
+        vendorDao.updateVendor(vendor);
 
         return "redirect:/vendors";
     }
