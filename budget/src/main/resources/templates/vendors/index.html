@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main class="container mt-4">
+    <h1>Transaction List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Website</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vendor:${vendors}">
+            <td th:text="${vendor.vendorId}"></td>
+            <td th:text="${vendor.vendorName}"></td>
+            <td th:text="${vendor.website}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

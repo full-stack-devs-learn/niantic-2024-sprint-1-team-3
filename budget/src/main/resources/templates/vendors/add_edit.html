@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main class="container mt-4">
+    <h1 th:if ="${action} == 'add'"> Add Vendor </h1>
+    <h1 th:if ="${action} == 'edit'"> Edit Vendor </h1>
+
+    <form action ="#" th:object= "${vendor}" method = "post">
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{vendorName}">
+            <label th:for="*{vendorName}">Vendor name</label>
+        </div>
+
+        <div class ="form-floating mb-3">
+            <input class="form-control" type="text" th:field ="*{website}">
+            <label th:for="*{website}">Website</label>
+        </div>
+
+        <input class ="btn btn-outline-danger" type = "Submit" value = "Save">
+    </form>
+</main>
+</body>
+</html>

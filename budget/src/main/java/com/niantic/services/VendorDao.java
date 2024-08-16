@@ -19,7 +19,7 @@ public class VendorDao {
 
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    public ArrayList<Vendor> getVendor()
+    public ArrayList<Vendor> getAllVendors()
     {
         ArrayList<Vendor> vendors = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class VendorDao {
         SELECT vendor_id
                , vendor_name
                , website
-        FROM vendors;
+        FROM vendors
         WHERE vendor_id = ?;
         """;
         var row = jdbcTemplate.queryForRowSet(sql, vendorId);
@@ -101,7 +101,7 @@ public class VendorDao {
         (?,?);
         """;
         jdbcTemplate.update(sql
-                , vendor.getVendorId()
+                , vendor.getVendorName()
                 , vendor.getWebsite()
         );
     }
