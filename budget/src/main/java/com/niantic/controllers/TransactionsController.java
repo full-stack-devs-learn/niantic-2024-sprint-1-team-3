@@ -114,4 +114,22 @@ public class TransactionsController
 
         return "transactions/reports";
     }
+
+    @GetMapping("transactions/reports/category/{category}")
+    public String getTransactionByCategory (Model model, @PathVariable int category)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(category);
+        model.addAttribute("transactions", transactions);
+
+        return "transactions/reports";
+    }
+
+    @GetMapping("transactions/{id}")
+    public String getTransactionById(Model model, @PathVariable int id)
+    {
+        var transaction = transactionDao.getTransactionById(id);
+        model.addAttribute("transaction", transaction);
+
+        return "transactions/details";
+    }
 }
