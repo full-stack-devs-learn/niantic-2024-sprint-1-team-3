@@ -5,43 +5,44 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 <main class="container mt-4">
-    <h1 th:if ="${action} == 'add'"> Add Transaction </h1>
-    <h1 th:if ="${action} == 'edit'"> Edit Transaction </h1>
+    <h1 th:if ="${action} == 'add'">Add Transaction</h1>
+    <h1 th:if ="${action} == 'edit'">Edit Transaction</h1>
 
     <form action ="#" th:object= "${transaction}" method = "post">
         <div th:if = "${action} == 'edit'" class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{transactionId}">
-            <label th:for="*{transactionId}"> Transaction Id </label>
+            <label th:for="*{transactionId}">Transaction Id</label>
         </div>
 
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{userId}">
-            <label th:for="*{userId}"> User Id </label>
+            <label th:for="*{userId}">User Id</label>
         </div>
-
-        <div class ="form-floating mb-3">
-            <input class="form-control" type="text" th:field ="*{categoryId}">
-            <label th:for="*{categoryId}"> Category Id</label>
+        <div class="form-floating mb-3">
+            <select class="form-select" th:field="*{categoryId}">
+                <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+            </select>
+            <label th:for="*{categoryId}">Category</label>
         </div>
 
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{vendorId}">
-            <label th:for="*{vendorId}"> Vendor Id </label>
+            <label th:for="*{vendorId}">Vendor Id</label>
         </div>
 
         <div class ="form-floating mb-3">
-            <input class="form-control" type="text" th:field ="*{transactionDate}">
-            <label th:for="*{transactionDate}"> Transaction Date </label>
+            <input class="form-control" type="date" th:field ="*{transactionDate}">
+            <label th:for="*{transactionDate}">Transaction Date</label>
         </div>
 
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{amount}">
-            <label th:for="*{amount}"> Amount </label>
+            <label th:for="*{amount}">Amount</label>
         </div>
 
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{notes}">
-            <label th:for="*{notes}"> Notes </label>
+            <label th:for="*{notes}">Notes</label>
         </div>
 
         <input class ="btn btn-outline-danger" type = "Submit"

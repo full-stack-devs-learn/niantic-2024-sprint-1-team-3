@@ -1,6 +1,8 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,9 @@ import java.util.ArrayList;
 public class ReportsController {
 
     private TransactionDao transactionDao = new TransactionDao();
+    private CategoryDao categoryDao = new CategoryDao();
 
     @GetMapping("/reports/user")
-
     public String getTransactionByUser (Model model, @RequestParam(required = false) Integer user)
     {
         if(user == null)
@@ -31,7 +33,6 @@ public class ReportsController {
     }
 
     @GetMapping("/reports/month")
-
     public String getTransactionByMonth (Model model, Integer month)
     {
         if(month == null)
@@ -46,7 +47,6 @@ public class ReportsController {
     }
 
     @GetMapping("/reports/year")
-
     public String getTransactionByYear (Model model, Integer year)
     {
         if(year == null)
@@ -64,12 +64,16 @@ public class ReportsController {
     @GetMapping("/reports/category")
     public String getTransactionByCategory (Model model, Integer category)
     {
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+
         if(category == null)
         {
             category = transactionDao.getTransactionsLastFive().getFirst().getCategoryId();
         }
 
         ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(category);
+
+        model.addAttribute("categories", categories);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "category");
 

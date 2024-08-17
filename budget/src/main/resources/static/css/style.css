@@ -7,3 +7,8 @@ td
 {
     vertical-align: middle !important;
 }
+
+.form-select
+{
+    width:auto !important;
+}

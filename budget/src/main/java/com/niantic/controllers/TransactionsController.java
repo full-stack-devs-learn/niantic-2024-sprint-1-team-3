@@ -1,8 +1,9 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import com.niantic.services.TransactionDao;
-import com.niantic.services.UserDao;
+import com.niantic.services.CategoryDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class TransactionsController
 {
     private TransactionDao transactionDao = new TransactionDao();
+    private CategoryDao categoryDao = new CategoryDao();
 
     @GetMapping ("/")
     public String getTransactionsLastFive (Model model)
@@ -27,6 +29,9 @@ public class TransactionsController
     @GetMapping ("/transactions/add")
     public String addTransaction (Model model)
     {
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+
+        model.addAttribute("categories", categories);
         model.addAttribute("transaction", new Transaction());
         model.addAttribute("action", "add");
         return "transactions/add_edit";
