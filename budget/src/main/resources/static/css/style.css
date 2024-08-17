@@ -2,3 +2,8 @@
 {
     font-family: Inter, sans-serif;
 }
+
+td
+{
+    vertical-align: middle !important;
+}
