@@ -5,13 +5,17 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 <main class="container mt-4">
-    <h1>Transaction List</h1>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1>All Vendors</h1>
+        <a th:href="@{/vendors/add}" class="btn btn-primary">+ Add new vendor</a>
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Website</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>

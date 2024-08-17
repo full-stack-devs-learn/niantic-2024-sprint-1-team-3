@@ -6,7 +6,10 @@
 <nav th:replace="fragments/nav :: nav"></nav>
 <main class="container mt-4">
     <h1>Welcome to Budget Buddy!</h1>
-    <h2 class="mt-4">Recent transactions</h2>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="mt-4">Recent transactions</h2>
+        <a th:href="@{/transactions/add}" class="btn btn-primary">+ Add new transaction</a>
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
