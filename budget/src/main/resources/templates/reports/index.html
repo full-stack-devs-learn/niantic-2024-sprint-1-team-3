@@ -5,13 +5,11 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 <main class="container mt-4">
-    <h1>Report List</h1>
-    <!-- <a href="/transactions/reports/user"></a> -->
-    <form th:action="@{${type}}" method="get">
-        <input class="form-control" type="text" th:name="@{${type}}">
-        <input class="btn btn-secondary" type="submit" value="Search">
+    <h1 th:text="'Report: Transactions by ' + ${type}"></h1>
+    <form th:action="@{${type}}" method="get" class="form-inline my-lg-4">
+        <input class="form-control mr-sm-2" th:placeholder="'Search ' + ${type}" type="text" th:name="@{${type}}">
+        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </form>
-    <p th:text="${message}"></p>
     <table class="table table-striped">
         <thead>
         <tr>
