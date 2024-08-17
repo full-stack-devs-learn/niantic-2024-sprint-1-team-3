@@ -18,16 +18,19 @@
             <input class="form-control" type="text" th:field ="*{userId}">
             <label th:for="*{userId}">User Id</label>
         </div>
-        <div class="form-floating mb-3">
-            <select class="form-select" th:field="*{categoryId}">
-                <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
-            </select>
-            <label th:for="*{categoryId}">Category</label>
-        </div>
 
-        <div class ="form-floating mb-3">
-            <input class="form-control" type="text" th:field ="*{vendorId}">
-            <label th:for="*{vendorId}">Vendor Id</label>
+        <div class="form-row">
+            <div class="form-floating mb-3 col-md-6">
+                <select class="form-select" th:field="*{categoryId}">
+                    <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                </select>
+                <label th:for="*{categoryId}">Category</label>
+            </div>
+
+            <div class ="form-floating mb-3 col-md-6">
+                <input class="form-control" type="text" th:field ="*{vendorId}">
+                <label th:for="*{vendorId}">Vendor Id</label>
+            </div>
         </div>
 
         <div class ="form-floating mb-3">
@@ -45,7 +48,7 @@
             <label th:for="*{notes}">Notes</label>
         </div>
 
-        <input class ="btn btn-outline-danger" type = "Submit"
+        <input class ="btn btn-success" type = "Submit"
  value = "Save">
     </form>
 </main>

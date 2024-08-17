@@ -1,15 +1,20 @@
+<!-- GENERAL SEARCH -->
 <form th:if="${type} != 'category' AND ${type} != 'month'" th:action="@{${type}}" method="get" class="form-inline my-lg-4">
     <input class="form-control mr-sm-2" th:placeholder="'Search ' + ${type}" type="text" th:name="@{${type}}">
     <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
 </form>
+
+<!-- CATEGORIES -->
 <form th:if="${type} == 'category'" th:action="${type}" method="get" class="form-inline my-lg-4">
-    <select class="form-select mr-sm-2" th:name="${type}">
+    <select class="form-select mr-sm-2 width-auto" th:name="${type}">
         <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
         <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </select>
 </form>
+
+<!-- MONTHS -->
 <form th:if="${type} == 'month'" th:action="${type}" method="get" class="form-inline my-lg-4">
-    <select class="form-select mr-sm-2" th:name="${type}">
+    <select class="form-select mr-sm-2 width-auto" th:name="${type}">
         <option value ="1">January</option>
         <option value="2">February</option>
         <option value="3">March</option>
