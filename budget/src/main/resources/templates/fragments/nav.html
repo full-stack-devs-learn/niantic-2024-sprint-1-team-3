@@ -1,18 +1,29 @@
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-    </ul>
-
-    <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-            Reports
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/reports/user">Report by User</a></li>
-            <li><a class="dropdown-item" href="/reports/month">report by Month</a></li>
-            <li><a class="dropdown-item" href="/reports/year">report by Year</a></li>
-            <li><a class="dropdown-item" href="/reports/category">Report by Category</a></li>
-            <li><a class="dropdown-item" href="/reports/vendor">Report by Vendor</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Budget Tracker</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Reports</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/reports/user">By User</a>
+                    <a class="dropdown-item" href="/reports/month">By Month</a>
+                    <a class="dropdown-item" href="/reports/year">By Year</a>
+                    <a class="dropdown-item" href="/reports/category">By Category</a>
+                    <a class="dropdown-item" href="/reports/vendor">By Vendor</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions">Transactions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/categories">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/vendors">Vendors</a>
+            </li>
         </ul>
     </div>
 </nav>
