@@ -14,14 +14,14 @@ public class TransactionsController
 {
     private TransactionDao transactionDao = new TransactionDao();
 
-    @GetMapping ("/transactions")
+    @GetMapping ("/")
     public String getTransactionsLastFive (Model model)
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionsLastFive();
         model.addAttribute("transactions", transactions);
         model.addAttribute("pageTitle", "Transactions");
 
-        return "transactions/index";
+        return "/index";
     }
 
     @GetMapping ("/transactions/add")
