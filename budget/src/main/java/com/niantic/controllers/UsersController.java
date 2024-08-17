@@ -20,7 +20,7 @@ public class UsersController {
     {
         ArrayList<User> users = userDao.getAllUsers();
         model.addAttribute("users", users);
-        model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageTitle", "All Users");
 
         return "users/index";
     }

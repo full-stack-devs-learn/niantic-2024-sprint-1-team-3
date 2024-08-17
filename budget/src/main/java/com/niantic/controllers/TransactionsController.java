@@ -21,7 +21,7 @@ public class TransactionsController
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionsLastFive();
         model.addAttribute("transactions", transactions);
-        model.addAttribute("pageTitle", "Transactions");
+        model.addAttribute("pageTitle", "All Transactions");
 
         return "/index";
     }
