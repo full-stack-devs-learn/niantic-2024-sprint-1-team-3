@@ -43,6 +43,11 @@ public class ReportsController {
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "month");
 
+        if(transactions.isEmpty())
+        {
+            model.addAttribute("message", "There were no transactions that matched this criteria.");
+        }
+
         return "reports/index";
     }
 
@@ -57,6 +62,11 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByYear(year);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "year");
+
+        if(transactions.isEmpty())
+        {
+            model.addAttribute("message", "There were no transactions that matched this criteria.");
+        }
 
         return "reports/index";
     }
@@ -77,6 +87,11 @@ public class ReportsController {
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "category");
 
+        if(transactions.isEmpty())
+        {
+            model.addAttribute("message", "There were no transactions that matched this criteria.");
+        }
+
         return "reports/index";
     }
 
@@ -91,6 +106,11 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByVendor(vendor);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "vendor");
+
+        if(transactions.isEmpty())
+        {
+            model.addAttribute("message", "There were no transactions that matched this criteria.");
+        }
 
         return "reports/index";
     }
