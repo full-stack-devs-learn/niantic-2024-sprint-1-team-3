@@ -42,14 +42,16 @@ public class TransactionsController
     {
         transactionDao.addTransaction(transaction);
         model.addAttribute("transaction", transaction);
-        return "redirect:/transactions";
+        return "redirect:/";
     }
 
     @GetMapping ("transactions/{id}/edit")
     public String editTransaction (Model model, @PathVariable int id)
     {
         Transaction transaction = transactionDao.getTransactionById(id);
+        ArrayList<Category> categories = categoryDao.getAllCategories();
 
+        model.addAttribute("categories", categories);
         model.addAttribute("transaction", transaction);
         model.addAttribute("action", "edit");
 
@@ -62,7 +64,7 @@ public class TransactionsController
         transaction.setTransactionId(id);
         transactionDao.updateTransaction(transaction);
 
-        return "redirect:/transactions";
+        return "redirect:/";
     }
 
     @GetMapping ("transactions/{id}/delete")
@@ -85,7 +87,7 @@ public class TransactionsController
     public String deleteTransaction (@PathVariable int id)
    {
        transactionDao.deleteTransaction(id);
-       return "redirect:/transactions";
+       return "redirect:/";
    }
 
     @GetMapping("transactions/{id}")
