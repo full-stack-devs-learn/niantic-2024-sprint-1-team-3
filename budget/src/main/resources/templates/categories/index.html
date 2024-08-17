@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<main class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1>All Categories</h1>
+        <a th:href="@{/categories/add}" class="btn btn-primary">+ Add new category</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Category Id</th>
+            <th>Category name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category:${categories}">
+            <td th:text="${category.categoryId}"></td>
+            <td th:text="${category.categoryName}"></td>
+            <td th:text="${category.description}"></td>
+            <td>
+                <a th:href="@{|/categories/${category.categoryId}/edit|}" class="btn btn-warning">Edit</a>
+                <a th:href="@{|/categories/${category.categoryId}/delete|}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
