@@ -25,6 +25,10 @@
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.phone}"></td>
             <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{|/users/${user.userId}/edit|}" class="btn btn-warning">Edit</a>
+                <a th:href="@{|/users/${user.userId}/delete|}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

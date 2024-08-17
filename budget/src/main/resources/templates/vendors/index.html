@@ -19,6 +19,10 @@
             <td th:text="${vendor.vendorId}"></td>
             <td th:text="${vendor.vendorName}"></td>
             <td th:text="${vendor.website}"></td>
+            <td>
+                <a th:href="@{|/vendors/${vendor.vendorId}/edit|}" class="btn btn-warning">Edit</a>
+                <a th:href="@{|/vendors/${vendor.vendorId}/delete|}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
