@@ -53,6 +53,7 @@ public class CategoriesController {
 
         model.addAttribute("category", category);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", "Edit Category");
 
         return "categories/add_edit";
     }
@@ -78,6 +79,7 @@ public class CategoriesController {
         }
 
         model.addAttribute("category", category);
+        model.addAttribute("pageTitle", "Delete Category");
         return "categories/delete";
     }
 

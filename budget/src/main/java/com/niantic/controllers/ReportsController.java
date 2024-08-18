@@ -28,6 +28,7 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(user);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "user");
+        model.addAttribute("pageTitle", "Report by user");
 
         return "reports/index";
     }
@@ -42,6 +43,7 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByMonth(month);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "month");
+        model.addAttribute("pageTitle", "report by month");
 
         if(transactions.isEmpty())
         {
@@ -62,6 +64,7 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByYear(year);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "year");
+        model.addAttribute("pageTitle", "Report by year");
 
         if(transactions.isEmpty())
         {
@@ -86,6 +89,7 @@ public class ReportsController {
         model.addAttribute("categories", categories);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "category");
+        model.addAttribute("pageTitle", "Report by category");
 
         if(transactions.isEmpty())
         {
@@ -106,6 +110,7 @@ public class ReportsController {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByVendor(vendor);
         model.addAttribute("transactions", transactions);
         model.addAttribute("type", "vendor");
+        model.addAttribute("pageTitle", "Report by vendor");
 
         if(transactions.isEmpty())
         {

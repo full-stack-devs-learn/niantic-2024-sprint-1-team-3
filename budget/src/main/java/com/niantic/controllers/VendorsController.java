@@ -21,7 +21,7 @@ public class VendorsController {
     {
         ArrayList<Vendor> vendors = vendorDao.getAllVendors();
         model.addAttribute("vendors", vendors);
-        model.addAttribute("pageTitle", "Vendors");
+        model.addAttribute("pageTitle", "All Vendors");
 
         return "vendors/index";
     }
@@ -31,6 +31,7 @@ public class VendorsController {
     {
         model.addAttribute("vendor", new Vendor());
         model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add vendor");
 
         return "vendors/add_edit";
     }
@@ -50,6 +51,7 @@ public class VendorsController {
 
         model.addAttribute("vendor", vendor);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", "Edit Vendor");
 
         return "vendors/add_edit";
     }
@@ -75,6 +77,7 @@ public class VendorsController {
         }
 
         model.addAttribute("vendor", vendor);
+        model.addAttribute("pageTitle", "Delete Vendor");
         return "vendors/delete";
     }
 

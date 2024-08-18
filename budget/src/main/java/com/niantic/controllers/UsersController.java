@@ -51,6 +51,7 @@ public class UsersController {
 
         model.addAttribute("user", user);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", "Edit User");
 
         return "users/add_edit";
     }
@@ -77,6 +78,7 @@ public class UsersController {
         }
 
         model.addAttribute("user", user);
+        model.addAttribute("pageTitle", "Delete User");
         return "users/delete";
     }
 

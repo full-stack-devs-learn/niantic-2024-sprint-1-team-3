@@ -34,6 +34,7 @@ public class TransactionsController
         model.addAttribute("categories", categories);
         model.addAttribute("transaction", new Transaction());
         model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add Transaction");
         return "transactions/add_edit";
     }
 
@@ -54,6 +55,7 @@ public class TransactionsController
         model.addAttribute("categories", categories);
         model.addAttribute("transaction", transaction);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", "Edit Transaction");
 
         return "transactions/add_edit";
     }
@@ -79,6 +81,7 @@ public class TransactionsController
         }
 
         model.addAttribute("transaction", transaction);
+        model.addAttribute("pageTitle", "Delete Transaction");
         return "transactions/delete";
     }
 
@@ -95,6 +98,7 @@ public class TransactionsController
     {
         var transaction = transactionDao.getTransactionById(id);
         model.addAttribute("transaction", transaction);
+        model.addAttribute("pageTitle", "Get transaction by Id");
 
         return "transactions/details";
     }
